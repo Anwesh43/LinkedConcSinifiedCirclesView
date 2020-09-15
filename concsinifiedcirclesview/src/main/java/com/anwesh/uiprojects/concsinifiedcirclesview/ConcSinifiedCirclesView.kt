@@ -206,4 +206,13 @@ class ConcSinifiedCirclesView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : ConcSinifiedCirclesView {
+            val view : ConcSinifiedCirclesView = ConcSinifiedCirclesView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
