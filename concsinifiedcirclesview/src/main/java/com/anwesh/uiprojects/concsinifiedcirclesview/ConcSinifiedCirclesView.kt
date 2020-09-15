@@ -21,7 +21,7 @@ val colors : Array<Int> = arrayOf(
         "#3F51B5"
 ).map({Color.parseColor(it)}).toTypedArray()
 val parts : Int = 3
-val scGap : Float = 0.02f
+val scGap : Float = 0.02f / parts
 val sizeFactor : Float = 4.1f
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
@@ -44,7 +44,7 @@ fun Canvas.drawConcSinifiedCircles(scale : Float, paint : Paint) {
     save()
     translate(w / 2, h / 2)
     for (j in 0..(parts - 1)) {
-        val sfj : Float = sf.divideScale(j, parts)
+        val sfj : Float = sf.divideScale(parts - 1 - j, parts)
         val deg : Float = finalDeg * sfj
         val currR : Float = gap * (j + 1)
         drawArc(RectF(-currR, -currR, currR, currR), finalDeg - deg, deg * 2, false, paint)
