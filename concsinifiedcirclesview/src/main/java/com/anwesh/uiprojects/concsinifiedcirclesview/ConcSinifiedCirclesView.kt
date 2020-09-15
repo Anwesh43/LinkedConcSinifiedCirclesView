@@ -181,4 +181,27 @@ class ConcSinifiedCirclesView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : ConcSinifiedCirclesView) {
+
+        private val animator : Animator = Animator(view)
+        private val csc : ConcSinifiedCircle = ConcSinifiedCircle(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            csc.draw(canvas, paint)
+            animator.animate {
+                csc.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            csc.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
