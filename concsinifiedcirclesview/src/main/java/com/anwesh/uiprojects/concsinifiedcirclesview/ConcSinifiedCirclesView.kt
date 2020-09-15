@@ -41,12 +41,15 @@ fun Canvas.drawConcSinifiedCircles(scale : Float, paint : Paint) {
     paint.strokeWidth = Math.min(w, h) / strokeFactor
     val sf : Float = scale.sinify()
     val gap : Float = Math.min(w, h) / (parts * sizeFactor)
+    save()
+    translate(w / 2, h / 2)
     for (j in 0..(parts - 1)) {
         val sfj : Float = sf.divideScale(j, parts)
         val deg : Float = finalDeg * sfj
         val currR : Float = gap * (j + 1)
         drawArc(RectF(-currR, -currR, currR, currR), finalDeg - deg, deg * 2, false, paint)
     }
+    restore()
 }
 
 fun Canvas.drawCSCNode(i : Int, scale : Float, paint : Paint) {
